@@ -20,9 +20,11 @@ import (
 )
 
 var appRootPath string
+var virtualDirectory string
 
 func init() {
 	flag.StringVar(&appRootPath, "appRootPath", ".", "app web root path")
+	flag.StringVar(&virtualDirectory, "virtualDirectory", "/", "virtual directory")
 }
 
 func main() {
@@ -51,7 +53,7 @@ func main() {
 		checkErr(fmt.Errorf("Generating UUID: %v", err))
 	}
 
-	err, config := hwcconfig.New(port, rootPath, tmpPath, uuid)
+	err, config := hwcconfig.New(port, rootPath, virtualDirectory, tmpPath, uuid)
 	checkErr(err)
 
 	err, wc := webcore.New()

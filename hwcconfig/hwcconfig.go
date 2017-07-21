@@ -10,17 +10,19 @@ type HwcConfig struct {
 	Port          int
 	RootPath      string
 	TempDirectory string
+	VirtualDirectory   string
 
 	AspnetConfigPath          string
 	WebConfigPath             string
 	ApplicationHostConfigPath string
 }
 
-func New(port int, rootPath, tmpPath, uuid string) (error, *HwcConfig) {
+func New(port int, rootPath, virtualDirectory, tmpPath, uuid string) (error, *HwcConfig) {
 	config := &HwcConfig{
 		Instance:      uuid,
 		Port:          port,
 		RootPath:      rootPath,
+		VirtualDirectory:   virtualDirectory,
 		TempDirectory: tmpPath,
 	}
 
