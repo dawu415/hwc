@@ -179,10 +179,13 @@ const applicationHostConfigTemplate = `<?xml version="1.0" encoding="UTF-8"?>
       </siteDefaults>
       <applicationDefaults applicationPool="AppPool{{.Config.Port}}" />
       <virtualDirectoryDefaults allowSubDirConfig="true" />
-			<site name="IronFoundrySite" id="1" serverAutoStart="true">
-        <application path="/" applicationPool="AppPool{{.Config.Port}}">
-          <virtualDirectory path="{{.Config.virtualDirectory}}" physicalPath="{{.Config.RootPath}}" />
-        </application>
+	 <site name="IronFoundrySite" id="1" serverAutoStart="true">
+	     <application path="/" applicationPool="AppPool{{.Config.Port}}">
+           <virtualDirectory path="/" physicalPath="{{.Config.RootPath}}" />
+         </application>
+	   <application path="{{.Config.VirtualDirectory}}" applicationPool="AppPool{{.Config.Port}}">
+	      <virtualDirectory path="/" physicalPath="{{.Config.RootPath}}" />
+     	</application>
         <bindings>
           <binding protocol="http" bindingInformation="*:{{.Config.Port}}:" />
         </bindings>
